@@ -1,0 +1,707 @@
+<!doctype html>
+<html lang="en" class="h-full">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Hotel Core 360</title>
+        <link rel="stylesheet" href="./style.css">
+        <script src="/_sdk/element_sdk.js"></script>
+<style>
+    html, body {
+        height: 100%;
+    }
+    body {
+        margin: 0;
+        font-family: "Manrope", sans-serif;
+        background: #f0f9ff;
+    }
+    .brand-serif {
+        font-family: "Cormorant Garamond", serif;
+    }
+    .hero-photo {
+        background-image:
+        linear-gradient(90deg, #51045e4d 0%, #13031647 38%, #46025238 100%),
+        url("./background.jpg");
+        background-size: cover;
+        background-position: center;
+    }
+    .gold-glow {
+        box-shadow: 0 18px 50px rgba(81, 4, 85, 0.152);
+    }
+    .panel-soft {
+        background:
+        linear-gradient(180deg, #fdf8fd, #fdf8fd);
+    }
+    .nav-chip {
+        transition: all 0.25s ease;
+    }
+    .nav-chip:hover,
+    .nav-chip.active {
+        transform: translateY(-1px);
+    }
+    .fade-rise {
+        opacity: 0;
+        transform: translateY(18px);
+        animation: fadeRise 0.7s ease forwards;
+    }
+    .fade-rise-delay-1 { animation-delay: 0.08s; }
+    .fade-rise-delay-2 { animation-delay: 0.16s; }
+    .fade-rise-delay-3 { animation-delay: 0.24s; }
+    .fade-rise-delay-4 { animation-delay: 0.32s; }
+    @keyframes fadeRise {
+        to {
+            opacity: 1;
+        transform: translateY(0);
+    }
+}
+.step-line::before {
+    content: "";
+    position: absolute;
+    left: 19px;
+    top: 42px;
+    width: 2px;
+    height: calc(100% - 16px);
+    background: linear-gradient(#aa71ac, #a753b6);
+}
+.powerbi-grid > div {
+    min-height: 220px;
+}
+</style>
+<style>body { box-sizing: border-box; }</style>
+<script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+</head>
+<body class="h-full text-[#471151]">
+    <div id="app" class="h-full w-full overflow-auto">
+        <header class="sticky top-0 z-30 border-b border-white/10 bg-[#320a39]/95 backdrop-blur-md">
+            <div class="mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-6 sm:px-6 lg:px-8">
+                <div class="flex items-center gap-6">
+                    <div id="brand-mark" class="flex h-12 w-12 items-center justify-center">
+                        <img src="logo.png" alt="HC Logo" class="h-full w-full scale-125 object-contain multiply">
+</div>
+<div>
+    <p id="site-title" class="brand-serif text-3xl leading-none text-white">Hotel core 360</p>
+    <span class="text-[10px] font-medium tracking-[0.3em] text-white uppercase mt-1">
+        PREMIUM HOSPITALITY
+    </span>
+</div>
+</div>
+<div class="md:hidden">
+    <button id="menu-toggle" class="text-white">
+        ☰
+    </button>
+</div>
+
+<nav id="mobile-menu" class="hidden flex-col gap-3 mt-4 md:flex md:flex-row" aria-label="Primary"><button class="nav-chip page-btn active rounded-full border border-[#da5bf1]/30 px-4 py-2 text-sm font-semibold text-white/90" data-page="home">Home</button> <button class="nav-chip page-btn rounded-full border border-white/15 px-4 py-2 text-sm font-semibold text-white/75" data-page="booking">Booking</button> <button class="nav-chip page-btn rounded-full border border-white/15 px-4 py-2 text-sm font-semibold text-white/75" data-page="profile">Profile</button> <button class="nav-chip page-btn rounded-full border border-white/15 px-4 py-2 text-sm font-semibold text-white/75" data-page="dashboard">Admin Dashboard</button> <button class="nav-chip page-btn active rounded-full border border-[#da5bf1]/30 px-4 py-2 text-sm font-semibold text-white/90" data-page="logout">Log Out</button>
+</nav>
+</div>
+</header>
+<main class="w-full">
+    <section id="page-home" class="page-view">
+        <section class="hero-photo relative overflow-hidden">
+            <div class="mx-auto grid w-full max-w-7xl gap-10 px-4 py-10 sm:px-6 lg:grid-cols-[1.15fr_0.85fr] lg:px-8 lg:py-16">
+<div class="flex flex-col justify-center">
+    <div class="fade-rise inline-flex w-fit items-center gap-2 rounded-full border border-[#da5bf1]/35 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-[#ffffff] backdrop-blur-sm"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles-icon lucide-sparkles"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/><path d="M20 2v4"/><path d="M22 4h-4"/><circle cx="4" cy="20" r="2"/></svg> Elevated guest journeys
+    </div>
+        <h1 id="hero-title" class="brand-serif fade-rise fade-rise-delay-1 mt-6 max-w-3xl text-5xl leading-[0.95] text-white sm:text-6xl lg:text-7xl">Secure Your Prestigious Stay</h1>
+        <p id="hero-subtitle" class="fade-rise fade-rise-delay-2 mt-5 max-w-2xl text-lg leading-8 text-white/90">Discover our premium hotel, compare diverse rooms and suites, and complete your elegant reservation with confidence.</p>
+        <div class="fade-rise fade-rise-delay-3 mt-8 flex flex-wrap items-center gap-4"><button class="page-jump rounded-full bg-[#702b7c] px-6 py-3 text-sm font-bold text-white transition hover:brightness-105" data-target="booking">Start booking</button> <button class="page-jump rounded-full border border-white/25 bg-white/10 px-6 py-3 text-sm font-bold text-white backdrop-blur-sm transition hover:bg-white/16" data-target="dashboard">View admin dashboard</button>
+        </div>
+        <div class="fade-rise fade-rise-delay-4 mt-10 grid max-w-xl grid-cols-3 gap-4">
+            <div class="rounded-2xl border border-[#f6c4ff]/12 bg-white/8 p-4 backdrop-blur-sm">
+            <p class="text-sm text-white">Luxury Rooms</p>
+        </div>
+        <div class="rounded-2xl border border-white/12 bg-white/8 p-4 backdrop-blur-sm">
+            
+            <p class="text-sm text-white">Premium Stay</p>
+        </div>
+        <div class="rounded-2xl border border-white/12 bg-white/8 p-4 backdrop-blur-sm">
+            <p class="text-2xl font-bold text-white">24/7</p>
+            <p class="text-sm text-white">Concierge support</p>
+        </div>
+    </div>
+        </div>
+        </div>
+    </section>
+        <section class="bg-white px-4 py-16 sm:px-6 lg:px-8">
+            <div class="mx-auto max-w-7xl">
+    <div class="mb-8 flex flex-col justify-between gap-4 lg:flex-row lg:items-end">
+        <div>
+            <p class="text-sm font-semibold uppercase tracking-[0.25em] text-[#9C27B0]">Curated stays</p>
+            <h2 class="brand-serif mt-2 text-4xl text-[#400b49]">Top-Rated Rooms</h2>
+        </div>
+    </div>
+    <div class="grid gap-6 lg:grid-cols-3">
+        <article class="gold-glow overflow-hidden rounded-[2rem] border border-[#e49cf1] bg-white">
+            <div class="h-56 bg-[linear-gradient(135deg,rgba(6,28,45,0.2),rgba(34,211,238,0.15)),url('./hotel1.jpg')] bg-cover bg-center"></div>
+            <div class="p-6">
+        <div class="flex items-start justify-between gap-4">
+        <div>
+            <h3 class="text-xl font-bold text-[#4a0d54]">Deluxe King Room</h3>
+            <p class="mt-1 text-sm text-[#7f6084]">A refined family sanctuary blending spacious luxury with exclusive privacy.</p>
+        </div><span class="flex items-center space-x-1 space-x-reverse rounded-full bg-[#efc0f8] px-3 py-1 text-xs font-bold text-[#33073a]"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star-icon lucide-star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg> 9.4</span>
+    </div>
+        <div class="mt-5 flex items-center justify-between">
+            <p class="text-sm text-gray-400" style="text-decoration: line-through;">10,000 EGP</p>
+            <p class="text-sm text-[#47354a]">From <span class="text-xl font-bold text-[#4a0d54]">7,200 EGP</span>/night</p><button class="page-jump rounded-full border border-[#471151] px-4 py-2 text-sm font-semibold text-[#4a0d54] transition hover:bg-[#4b1454] hover:text-white" data-target="booking">Book now</button>
+        </div>
+    </div>
+</article>
+<article class="gold-glow overflow-hidden rounded-[2rem] border border-[#e49cf1] bg-white">
+    <div class="h-56 bg-[linear-gradient(135deg,rgba(6,28,45,0.2),rgba(34,211,238,0.15)),url('./hotel-2.jpg')] bg-cover bg-center"></div>
+    <div class="p-6">
+        <div class="flex items-start justify-between gap-4">
+            <div>
+            <h3 class="text-xl font-bold text-[#4a0d54]">Junior Suite</h3>
+            <p class="mt-1 text-sm text-[#7f6084]">Contemporary elegance dissolving into a breathtaking, panoramic waterfront view.</p>
+        </div><span class="flex items-center space-x-1 space-x-reverse rounded-full bg-[#efc0f8] px-3 py-1 text-xs font-bold text-[#33073a]"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star-icon lucide-star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg> 9.1</span>
+        </div>
+        <div class="mt-5 flex items-center justify-between">
+            <p class="text-sm text-gray-400" style="text-decoration: line-through;">14,000 EGP</p>
+            <p class="text-sm text-[#47354a]">From <span class="text-xl font-bold text-[#4a0d54]">12,800 EGP</span>/night</p><button class="page-jump rounded-full border border-[#471151] px-4 py-2 text-sm font-semibold text-[#4a0d54] transition hover:bg-[#4b1454] hover:text-white" data-target="booking">Book now</button>
+        </div>
+        </div>
+        </article>
+        <article class="gold-glow overflow-hidden rounded-[2rem] border border-[#e49cf1] bg-white">
+            <div class="h-56 bg-[linear-gradient(135deg,rgba(6,28,45,0.2),rgba(34,211,238,0.15)),url('./hotel3.jpg')] bg-cover bg-center"></div>
+        <div class="p-6">
+        <div class="flex items-start justify-between gap-4">
+        <div>
+            <h3 class="text-xl font-bold text-[#4a0d54]">Royal Suite</h3>
+            <p class="mt-1 text-sm text-[#7f6084]">The ultimate elite experience, uniting absolute privacy with direct, majestic waterfront vistas.</p>
+        </div><span class="flex items-center space-x-1 space-x-reverse rounded-full bg-[#efc0f8] px-3 py-1 text-xs font-bold text-[#33073a]"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star-icon lucide-star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg> 9.6</span>
+        </div>
+        <div class="mt-5 flex items-center justify-between">
+            <p class="text-sm text-gray-400" style="text-decoration: line-through;">18,000 EGP</p>
+            <p class="text-sm text-[#47354a]">From <span class="text-xl font-bold text-[#4a0d54]">16,000 EGP</span>/night</p><button class="page-jump rounded-full border border-[#471151] px-4 py-2 text-sm font-semibold text-[#4a0d54] transition hover:bg-[#4b1454] hover:text-white" data-target="booking">Book now</button>
+        </div>
+        </div>
+        </article>
+    </div>
+    </div>
+    </section>
+        <section class="bg-white px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-7xl rounded-[2rem] border border-[#e49cf1] panel-soft p-8 lg:p-10">
+    <div class="mb-10 text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.25em] text-[#4a0d54]">Simple journey</p>
+        <h2 class="brand-serif mt-2 text-4xl text-[#4a0d54]">Booking Flow at a Glance</h2>
+    </div>
+    <div class="grid gap-6 lg:grid-cols-4">
+        <div class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-[#e9a7f5]">
+        <div class="mb-4 inline-flex rounded-2xl bg-[#9007a7] p-3 text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-search-icon lucide-user-search"><circle cx="10" cy="7" r="4"/><path d="M10.3 15H7a4 4 0 0 0-4 4v2"/><circle cx="17" cy="17" r="3"/><path d="m21 21-1.9-1.9"/></svg>
+        </div>
+            <h3 class="text-lg font-bold text-[#4a0d54]">1. Guest Details</h3>
+            <p class="mt-2 text-sm leading-7 text-[#47354a]">Capture contact information clearly to start a reservation with minimal friction.</p>
+        </div>
+        <div class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-[#e9a7f5]">
+        <div class="mb-4 inline-flex rounded-2xl bg-[#9007a7] p-3 text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-hotel-icon lucide-hotel"><path d="M10 22v-6.57"/><path d="M12 11h.01"/><path d="M12 7h.01"/><path d="M14 15.43V22"/><path d="M15 16a5 5 0 0 0-6 0"/><path d="M16 11h.01"/><path d="M16 7h.01"/><path d="M8 11h.01"/><path d="M8 7h.01"/><rect x="4" y="2" width="16" height="20" rx="2"/></svg>
+          </div>
+            <h3 class="text-lg font-bold text-[#4a0d54]">2. Hotel &amp; Dates</h3>
+            <p class="mt-2 text-sm leading-7 text-[#47354a]">Choose a property, define arrival and departure, and compare availability quickly.</p>
+        </div>
+        <div class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-[#e9a7f5]">
+        <div class="mb-4 inline-flex rounded-2xl bg-[#9007a7] p-3 text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bed-single-icon lucide-bed-single"><path d="M3 20v-8a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v8"/><path d="M5 10V6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v4"/><path d="M3 18h18"/></svg>
+        </div>
+            <h3 class="text-lg font-bold text-[#4a0d54]">3. Room &amp; Services</h3>
+            <p class="mt-2 text-sm leading-7 text-[#47354a]">Pick room type, apply daily rate, and enhance the stay with premium services.</p>
+        </div>
+        <div class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-[#e9a7f5]">
+        <div class="mb-4 inline-flex rounded-2xl bg-[#9007a7] p-3 text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-badge-check-icon lucide-badge-check"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></svg>
+           </div>
+            <h3 class="text-lg font-bold text-[#4a0d54]">4. Confirmation</h3>
+            <p class="mt-2 text-sm leading-7 text-[#47354a]">Finalize payment, generate a confirmation number, and present a polished summary.</p>
+        </div>
+        </div>
+        </div>
+    </section>
+    </section>
+    <section id="page-booking" class="page-view hidden bg-white px-4 py-10 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-7xl">
+        <div class="mb-8 flex flex-col gap-3">
+        <p class="text-sm font-semibold uppercase tracking-[0.25em] text-[#9C27B0]">Reservation workspace</p>
+        <h1 id="booking-page-title" class="brand-serif text-5xl text-[#362044]">Hotel Registration &amp; Booking</h1>
+        <p class="max-w-3xl text-base leading-8 text-[#a53bb8]">Your journey starts here.</p>
+    </div>
+    <div class="grid gap-8 xl:grid-cols-[1.2fr_0.8fr]">
+        <section class="rounded-[2rem] border border-[#e49cf1] bg-white p-6 lg:p-8">
+            <div class="mb-8 flex flex-wrap gap-3"><button class="step-tab rounded-full bg-[#512159] px-4 py-2 text-sm font-bold text-white" data-step="1">Step 1 · Contact</button> <button class="step-tab rounded-full bg-[#512159] px-4 py-2 text-sm font-bold text-[#33073a]" data-step="2">Step 2 · Hotel &amp; Dates</button> <button class="step-tab rounded-full bg-[#512159] px-4 py-2 text-sm font-bold text-[#33073a]" data-step="3">Step 3 · Room</button> <button class="step-tab rounded-full bg-[#512159] px-4 py-2 text-sm font-bold text-[#33073a]" data-step="4">Step 4 · Services</button> <button class="step-tab rounded-full bg-[#512159] px-4 py-2 text-sm font-bold text-[#33073a]" data-step="5">Step 5 · Payment</button>
+        </div>
+        <form id="booking-form">
+        <div class="booking-step" data-step-panel="1">
+        <div class="grid gap-5 md:grid-cols-2">
+        <div><label for="guest-full-name" class="mb-2 block text-sm font-semibold text-[#5b1c66]">Full name</label> <input id="guest-full-name" name="fullName" autocomplete="given-name" type="text" value="" required class="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-[#9c06b6] focus:ring-2 focus:ring-[#d824f614]/25">
+        </div>
+        <div><label for="guest-email" class="mb-2 block text-sm font-semibold text-[#5b1c66]">Email address</label> <input id="guest-email" type="email" name="email" autocomplete="email" value="" required class="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-[#9c06b6] focus:ring-2 focus:ring-[#d824f614]/25">
+        </div>
+        <div><label for="guest-phone" class="mb-2 block text-sm font-semibold text-[#5b1c66]">Phone number</label> <input id="guest-phone" type="tel" name="phone" autocomplete="tel" value="" required class="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-[#9c06b6] focus:ring-2 focus:ring-[#d824f614]/25">
+        </div>
+        <div>
+        <label for="guest-gender"class="mb-2 block text-sm font-semibold text-[#5b1c66]">Gender</label><select id="guest-gender" required name="gender" class="w-full rounded-2xl border border-slate-200 px-4 py-3  outline-none transition focus:border-[#9c06b6] focus:ring-2 focus:ring-[#d824f614]/25">
+            <option value="">Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </select>
+        </div>
+    </div>
+        </div>
+        <div class="booking-step hidden" data-step-panel="2">
+            <div class="grid gap-5 md:grid-cols-2">
+                <div class="md:col-span-2"><label for="hotel-select" class="mb-2 block text-sm font-semibold text-[#5b1c66]">Select room</label> <select id="hotel-select" class="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-[#9c06b6] focus:ring-2 focus:ring-[#d824f614]/25"> <option value="Deluxe King Room" data-rate="7200">Deluxe King Room</option> <option value="Junior Suite" data-rate="12800">Junior Suite</option> <option value="Royal Suite" data-rate="16000">Royal Suite</option> </select>
+        </div>
+        <div><label for="check-in" class="mb-2 block text-sm font-semibold text-[#5b1c66]">Check-in date</label> <input id="check-in" type="date" required class="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-[#9c06b6] focus:ring-2 focus:ring-[#d824f614]/25">
+        </div>
+        <div><label for="check-out" class="mb-2 block text-sm font-semibold text-[#5b1c66]">Check-out date</label> <input id="check-out" type="date"  required class="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-[#9c06b6] focus:ring-2 focus:ring-[#d824f614]/25">
+        </div>
+    </div>
+        </div>
+        <div class="booking-step hidden" data-step-panel="3">
+        <div class="grid gap-5 md:grid-cols-3"><label class="cursor-pointer rounded-3xl border border-[#e49cf1] p-5 transition hover:border-[#9c06b6]"> <input type="radio" name="room-type" value="Deluxe King Room" data-rate="7200" class="sr-only room-choice" checked> <p class="text-lg font-bold text-[#4a0d54]">Deluxe King Room</p><p class="mt-2 text-sm text-[#47354a]">Family Pool View</p><p class="mt-4 text-xl font-bold text-[#4a0d54]">7,200 EGP/day</p></label> <label class="cursor-pointer rounded-3xl border border-[#e49cf1] p-5 transition hover:border-[#9c06b6]"> <input type="radio" name="room-type" value="Junior Suite" data-rate="12800" class="sr-only room-choice"> <p class="text-lg font-bold text-[#4a0d54]">Junior Suite</p><p class="mt-2 text-sm text-[#47354a]">Premium Sea View</p><p class="mt-4 text-xl font-bold text-[#4a0d54]">12,800 EGP/day</p></label> <label class="cursor-pointer rounded-3xl border border-[#e49cf1] p-5 transition hover:border-[#9c06b6]"> <input type="radio" name="room-type" value="Royal Suite" data-rate="16000" class="sr-only room-choice"> <p class="text-lg font-bold text-[#4a0d54]">Royal Suite</p><p class="mt-2 text-sm text-[#47354a]">First-Class Penthouse</p><p class="mt-4 text-xl font-bold text-[#4a0d54]">16,000 EGP/day</p></label>
+        </div>
+    </div>
+        <div class="booking-step hidden" data-step-panel="4">
+        <div class="grid gap-4 md:grid-cols-2"><label class="flex items-start gap-4 rounded-3xl border border-[#e49cf1] p-5"> <input type="checkbox" class="service-option mt-1 h-5 w-5 rounded border-slate-300 text-[#4a0d54]" data-name="Airport Transfer" data-price="3000" checked> <span> <span class="block text-base font-bold text-[#4a0d54]">Airport Transfer</span> <span class="mt-1 block text-sm text-[#47354a]">Private pickup and drop-off service</span> </span> </label> <label class="flex items-start gap-4 rounded-3xl border border-[#e49cf1] p-5"> <input type="checkbox" class="service-option mt-1 h-5 w-5 rounded border-slate-300 text-[#4a0d54]" data-name="Spa Access" data-price="5000"> <span> <span class="block text-base font-bold text-[#4a0d54]">Spa Access</span> <span class="mt-1 block text-sm text-[#47354a]">Wellness circuit and treatment credit</span> </span> </label> <label class="flex items-start gap-4 rounded-3xl border border-[#e49cf1] p-5"> <input type="checkbox" class="service-option mt-1 h-5 w-5 rounded border-slate-300 text-[#4a0d54]" data-name="Breakfast Upgrade" data-price="2400"> <span> <span class="block text-base font-bold text-[#4a0d54]">Breakfast Upgrade</span> <span class="mt-1 block text-sm text-[#47354a]">Chef-led premium breakfast selection</span> </span> </label> <label class="flex items-start gap-4 rounded-3xl border border-[#e49cf1] p-5"> <input type="checkbox" class="service-option mt-1 h-5 w-5 rounded border-slate-300 text-[#4a0d54]" data-name="Late Checkout" data-price="3200"> <span> <span class="block text-base font-bold text-[#4a0d54]">Late Checkout</span> <span class="mt-1 block text-sm text-[#47354a]">Extend departure for greater flexibility</span> </span> </label>
+        </div>
+        </div>
+        <div class="booking-step hidden" data-step-panel="5">
+        <div class="grid gap-5 md:grid-cols-2">
+        <div><label for="payment-method" class="mb-2 block text-sm font-semibold text-[#5b1c66]">Payment method</label> <select id="payment-method" class="w-full rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-[#9c06b6] focus:ring-2 focus:ring-[#d824f614]/25"> <option>Company Account</option> <option>Pay at Property</option> <option>Digital Wallet</option> </select>
+        </div>
+        <div><label for="confirmation-number" class="mb-2 block text-sm font-semibold text-[#5b1c66]">Confirmation number</label> <input id="confirmation-number" type="text" value="EGY-240981" class="w-full rounded-2xl border border-slate-200 bg-[#fdf8fd] px-4 py-3 font-semibold text-[#4a0d54]" readonly>
+        </div>
+        <div class="md:col-span-2 rounded-3xl bg-[#fdf8fd] p-5">
+            <p class="text-sm font-semibold uppercase tracking-[0.2em] text-[#4a0d54]">Final confirmation</p>
+            <p class="mt-2 text-sm leading-7 text-[#47354a]">Review your booking summary on the right, then submit to simulate a completed reservation journey.</p>
+        </div>
+    </div>
+        </div>
+        <div class="mt-8 flex flex-wrap items-center justify-between gap-4"><button type="button" id="prev-step" class="rounded-full border border-[#da5bf1] px-5 py-3 text-sm font-bold text-[#33073a] transition hover:bg-[#d431f0]">Previous</button>
+        <div class="flex gap-3"><button type="button" id="next-step" class="rounded-full bg-[#9723ab] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#33073a]">Next step</button> <button type="submit" id="finish-booking" class="hidden rounded-full bg-[#a439b6] px-6 py-3 text-sm font-bold text-white transition hover:brightness-105">Complete booking</button>
+        </div>
+    </div>
+            <p id="booking-message" class="mt-5 hidden rounded-2xl bg-[#fdf8fd] px-4 py-3 text-sm font-medium text-[#5f146c]"></p>
+        </form>
+    </section>
+    <aside class="rounded-[2rem] border border-[#e49cf1] panel-soft p-6 lg:p-8">
+        <p class="text-sm font-semibold uppercase tracking-[0.25em] text-[#9C27B0]">Price summary</p>
+        <h2 class="mt-2 text-2xl font-bold text-[#4a0d54]">Reservation Snapshot</h2>
+        <div class="mt-6 space-y-4">
+        <div class="rounded-3xl bg-white p-5 ring-1 ring-[#e9a7f5]">
+            <div class="flex items-center justify-between text-sm"><span class="text-[#7f6084]">Guest</span> <span id="summary-guest" class="font-semibold text-[#4a0d54]">Fatma Fathi</span>
+            </div>
+            <div class="mt-3  items-center justify-between text-sm hidden"><span class="text-[#7f6084]">Hotel</span> <span id="summary-hotel" class="font-semibold text-[#4a0d54]">Deluxe King Room</span>
+        </div>
+        <div class="mt-3 flex items-center justify-between text-sm"><span class="text-[#7f6084]">Dates</span> <span id="summary-dates" class="font-semibold text-[#4a0d54]">Apr 22 → May 1</span>
+        </div>
+        <div class="mt-3 flex items-center justify-between text-sm"><span class="text-[#7f6084]">Room</span> <span id="summary-room" class="font-semibold text-[#4a0d54]">Deluxe King Room</span>
+        </div>
+    </div>
+    <div class="rounded-3xl bg-white p-5 ring-1 ring-[#e9a7f5]">
+        <div class="flex items-center justify-between text-sm"><span class="text-[#47354a]">Nights</span> <span id="summary-nights" class="font-semibold text-[#4a0d54]">3</span>
+        </div>
+        <div class="mt-3 flex items-center justify-between text-sm"><span class="text-[#47354a]">Daily rate</span> <span id="summary-rate" class="font-semibold text-[#4a0d54]">7,200 EGP</span>
+        </div>
+        <div class="mt-3 flex items-start justify-between gap-4 text-sm"><span class="text-[#47354a]">Services</span> <span id="summary-services" class="text-right font-semibold text-[#4a0d54]">Airport Transfer</span>
+        </div>
+        <div class="mt-4 border-t border-dashed border-[#e49cf1] pt-4">
+        <div class="flex items-center justify-between text-sm"><span class="text-[#47354a]">Room total</span> <span id="summary-room-total" class="font-semibold text-[#4a0d54]">3,600 EGP</span>
+        </div>
+        <div class="mt-3 flex items-center justify-between text-sm"><span class="text-[#47354a]">Service total</span> <span id="summary-service-total" class="font-semibold text-[#4a0d54]">250 EGP</span>
+        </div>
+        <div class="mt-4 flex items-center justify-between text-lg"><span class="font-bold text-[#4a0d54]">Estimated total</span> <span id="summary-grand-total" class="font-extrabold text-[#4a0d54]">56,850 EGP</span>
+        </div>
+        </div>
+    </div>
+    <div class="rounded-3xl bg-[#9810af] p-5 text-white">
+        <div class="flex items-center gap-3">
+            <div class="rounded-2xl bg-white/10 p-3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-check-icon lucide-shield-check"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+        </div>
+        <div>
+            <p class="font-semibold">Reservation confidence</p>
+            <p class="text-sm text-white/70">Transparent steps and clear cost breakdown improve trust.</p>
+        </div>
+            </div>
+        </div>
+    </div>
+        </aside>
+    </div>
+        </div>
+    </section>
+    <section id="page-profile" class="page-view hidden bg-white px-4 py-10 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-7xl">
+            <div class="mb-10 flex flex-col gap-3">
+                <p class="text-sm font-semibold uppercase tracking-[0.25em] text-[#9c27b0]">Guest profile</p>
+                <h1 id="feedback-title" class="brand-serif text-5xl text-[#4a0d54]">Guest Feedback &amp; Reviews</h1>
+            </div>
+            <div class="grid gap-8 xl:grid-cols-[0.75fr_1.25fr]">
+        <aside class="rounded-[2rem] border border-[#e49cf1] panel-soft p-8">
+            <div class="flex items-center gap-4">
+        <div class="flex h-16 w-16 items-center justify-center rounded-full bg-[#9723ab] text-white"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-round-icon lucide-user-round"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg>
+        </div>
+        <div>
+            <h2 class="text-2xl font-bold text-[#4a0d54]">Fatma fathi</h2>
+            <p class="text-sm text-[#7f6084]">Guest ID · G-1048</p>
+        </div>
+    </div>
+    <div class="mt-8 space-y-4">
+        <div class="rounded-3xl bg-white p-5 ring-1 ring-[#e9a7f5]">
+            <p class="text-sm text-[#7f6084]">Membership Tier</p>
+            <p class="mt-1 text-lg font-bold text-[#4a0d54]">Gold Circle</p>
+        </div>
+        <div class="rounded-3xl bg-white p-5 ring-1 ring-[#e9a7f5]">
+            <p class="text-sm text-[#7f6084]">Past Reservations</p>
+            <p class="mt-1 text-lg font-bold text-[#4a0d54]">8 stays completed</p>
+        </div>
+        <div class="rounded-3xl bg-white p-5 ring-1 ring-[#e9a7f5]">
+            <p class="text-sm text-[#7f6084]">Average Rating Given</p>
+            <p class="mt-1 text-lg font-bold text-[#4a0d54]">4.7 / 5</p>
+        </div>
+    </div>
+</aside>
+<section>
+    <div class="grid gap-6 lg:grid-cols-2">
+        <article class="rounded-[2rem] border border-[#e49cf1] bg-white p-6 shadow-sm">
+        <div class="flex items-start justify-between gap-4">
+            <div>
+            <p class="text-sm font-semibold uppercase tracking-[0.2em] text-[#4a0d54]">Reservation R-2804</p>
+            <h3 class="mt-1 text-xl font-bold text-[#4a0d54]">Deluxe King Room</h3>
+        </div>
+        <div class="flex items-center gap-1 rounded-full bg-[#efc0f8] px-3 py-1 text-sm font-bold text-[#33073a]"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star-icon lucide-star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg> 5.0
+        </div>
+    </div>
+    <p class="mt-4 text-sm leading-7 text-[#47354a]">"Absolutely loved our Deluxe King Room! The Nile views were breathtaking, the bed was incredibly comfortable, and the staff went above and beyond."</p>
+    <div class="mt-5 flex items-center justify-between border-t border-[#e49cf1] pt-4 text-sm"><span class="text-[#7f6084]">Evaluates link</span> <span class="font-semibold text-[#4a0d54]">GuestId G-1048 · Reservation R-2804</span>
+    </div>
+</article>
+<article class="rounded-[2rem] border border-[#e49cf1] bg-white p-6 shadow-sm">
+    <div class="flex items-start justify-between gap-4">
+        <div>
+            <p class="text-sm font-semibold uppercase tracking-[0.2em] text-[#4a0d54]">Reservation R-2719</p>
+            <h3 class="mt-1 text-xl font-bold text-[#4a0d54]">Junior Suite</h3>
+        </div>
+        <div class="flex items-center gap-1 rounded-full bg-[#efc0f8] px-3 py-1 text-sm font-bold text-[#33073a]"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star-icon lucide-star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg> 4.8
+            </div>
+        </div>
+        <p class="mt-4 text-sm leading-7 text-[#47354a]">"Staying in the Junior Suite was amazing. It combines historic charm with modern comfort, and having that extra space made all the difference."</p>
+        <div class="mt-5 flex items-center justify-between border-t border-[#e49cf1] pt-4 text-sm"><span class="text-[#7f6084]">Evaluates link</span> <span class="font-semibold text-[#4a0d54]">GuestId G-1048 · Reservation R-2719</span>
+        </div>
+    </article>
+    <article class="rounded-[2rem] border border-[#e49cf1] bg-white p-6 shadow-sm">
+        <div class="flex items-start justify-between gap-4">
+            <div>
+            <p class="text-sm font-semibold uppercase tracking-[0.2em] text-[#4a0d54]">Reservation R-2630</p>
+            <h3 class="mt-1 text-xl font-bold text-[#4a0d54]">Royal Suite</h3>
+            </div>
+            <div class="flex items-center gap-1 rounded-full bg-[#efc0f8] px-3 py-1 text-sm font-bold text-[#33073a]"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star-icon lucide-star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg> 4.6
+            </div>
+        </div>
+        <p class="mt-4 text-sm leading-7 text-[#47354a]">"The Royal Suite was spectacular! A wonderful island resort experience with excellent dining, absolute relaxation, and great local culture touches. Highly recommend."</p>
+        <div class="mt-5 flex items-center justify-between border-t border-[#e49cf1] pt-4 text-sm"><span class="text-[#7f6084]">Evaluates link</span> <span class="font-semibold text-[#4a0d54]">GuestId G-1048 · Reservation R-2630</span>
+            </div>
+        </article>
+            <article class="rounded-[2rem] border border-dashed border-[#da5bf1] bg-[#fdf8fd] p-6 shadow-sm">
+                <div class="flex h-full flex-col items-center justify-center text-center">
+                    <div class="rounded-full bg-white p-4 text-[#4a0d54] ring-1 ring-[#e9a7f5]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-square-diff-icon lucide-message-square-diff"><path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z"/><path d="M10 15h4"/><path d="M10 9h4"/><path d="M12 7v4"/></svg>
+                    </div>
+                    <h3 class="mt-4 text-lg font-bold text-[#4a0d54]">Leave a new review</h3>
+            <p class="mt-2 max-w-xs text-sm leading-7 text-[#47354a]">After future stays, new feedback cards can appear here with linked guest and reservation references.</p>
+        </div>
+    </article>
+</div>
+        </section>
+    </div>
+</div>
+    </section>
+   
+    </main>
+    </div>
+    <script>
+        const defaultConfig = {
+        background_color: "#f8f6f1",
+        surface_color: "#0d2747",
+        text_color: "#0f172a",
+        primary_action_color: "#d4b06a",
+        secondary_action_color: "#1d4ed8",
+        font_family: "Cormorant Garamond",
+        font_size: 16,
+        site_title: "Hotel Core 360",
+        hero_title: "Secure Your Prestigious Stay",
+        hero_subtitle: "Discover our premium hotel, compare diverse rooms and suites, and complete your elegant reservation with confidence.",
+        booking_page_title: "Hotel Registration & Booking",
+        feedback_title: "Guest Feedback & Reviews",
+        };
+        
+        const refs = {};
+    let currentStep = 1;
+
+        function cacheRefs() {
+        refs.app = document.getElementById("app");
+        refs.siteTitle = document.getElementById("site-title");
+        refs.heroTitle = document.getElementById("hero-title");
+        refs.heroSubtitle = document.getElementById("hero-subtitle");
+        refs.bookingPageTitle = document.getElementById("booking-page-title");
+        refs.feedbackTitle = document.getElementById("feedback-title");
+        refs.pageButtons = Array.from(document.querySelectorAll(".page-btn"));
+        refs.pageViews = Array.from(document.querySelectorAll(".page-view"));
+        refs.pageJumps = Array.from(document.querySelectorAll(".page-jump"));
+        refs.heroBookingForm = document.getElementById("hero-booking-form");
+        refs.heroFormMessage = document.getElementById("hero-form-message");
+        refs.stepTabs = Array.from(document.querySelectorAll(".step-tab"));
+        refs.stepPanels = Array.from(document.querySelectorAll(".booking-step"));
+        refs.prevStep = document.getElementById("prev-step");
+        refs.nextStep = document.getElementById("next-step");
+        refs.finishBooking = document.getElementById("finish-booking");
+        refs.bookingForm = document.getElementById("booking-form");
+        refs.bookingMessage = document.getElementById("booking-message");
+        refs.fullName = document.getElementById("guest-full-name");
+        refs.guenderSelect = document.getElementById("guender-select");
+        refs.hotelSelect = document.getElementById("hotel-select");
+        refs.checkIn = document.getElementById("check-in");
+        refs.checkOut = document.getElementById("check-out");
+        refs.roomChoices = Array.from(document.querySelectorAll(".room-choice"));
+        refs.serviceOptions = Array.from(document.querySelectorAll(".service-option"));
+        refs.summaryGuest = document.getElementById("summary-guest");
+        refs.summaryHotel = document.getElementById("summary-hotel");
+        refs.summaryDates = document.getElementById("summary-dates");
+        refs.summaryRoom = document.getElementById("summary-room");
+        refs.summaryNights = document.getElementById("summary-nights");
+        refs.summaryRate = document.getElementById("summary-rate");
+        refs.summaryServices = document.getElementById("summary-services");
+        refs.summaryRoomTotal = document.getElementById("summary-room-total");
+        refs.summaryServiceTotal = document.getElementById("summary-service-total");
+        refs.summaryGrandTotal = document.getElementById("summary-grand-total");
+        }
+        
+        function formatDate(dateString) {
+            if (!dateString) return "Select dates";
+            const date = new Date(dateString + "T00:00:00");
+            return date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+        }
+
+        function calculateNights() {
+            const start = refs.checkIn.value ? new Date(refs.checkIn.value + "T00:00:00") : null;
+            const end = refs.checkOut.value ? new Date(refs.checkOut.value + "T00:00:00") : null;
+            if (!start || !end) return 1;
+        const diff = Math.round((end - start) / (1000 * 60 * 60 * 24));
+        return diff > 0 ? diff : 1;
+    }
+    
+    function getSelectedRoom() {
+        const selected = refs.roomChoices.find((radio) => radio.checked);
+        return {
+            name: selected ? selected.value : "Deluxe King Room",
+            rate: selected ? Number(selected.dataset.rate) : 280
+        };
+    }
+    
+    function getSelectedServices() {
+        return refs.serviceOptions
+        .filter((checkbox) => checkbox.checked)
+        .map((checkbox) => ({
+            name: checkbox.dataset.name,
+            price: Number(checkbox.dataset.price)
+            }));
+        }
+
+        function updateSummary() {
+            const fullName = refs.fullName.value || "Guest";
+        const hotel = refs.hotelSelect.value;
+        const nights = calculateNights();
+        const room = getSelectedRoom();
+        const services = getSelectedServices();
+        const servicesTotal = services.reduce((sum, item) => sum + item.price, 0);
+        const roomTotal = nights * room.rate;
+        const grandTotal = roomTotal + servicesTotal;
+        
+        refs.summaryGuest.textContent = fullName;
+        refs.summaryHotel.textContent = hotel;
+        refs.summaryDates.textContent = `${formatDate(refs.checkIn.value)} → ${formatDate(refs.checkOut.value)}`;
+        refs.summaryRoom.textContent = room.name;
+        refs.summaryNights.textContent = String(nights);
+        refs.summaryRate.textContent = `${room.rate.toLocaleString()} EGP`;
+        refs.summaryServices.textContent = services.length ? services.map((item) => item.name).join(", ") : "No add-on services";
+        refs.summaryRoomTotal.textContent = `${roomTotal.toLocaleString()} EGP`;
+        refs.summaryServiceTotal.textContent = `${servicesTotal.toLocaleString()} EGP`;
+        refs.summaryGrandTotal.textContent = `${grandTotal.toLocaleString()} EGP`;
+    }
+
+    function setActivePage(pageName) {
+        refs.pageViews.forEach((view) => {
+            view.classList.toggle("hidden", view.id !== `page-${pageName}`);
+        });
+
+        refs.pageButtons.forEach((button) => {
+            const active = button.dataset.page === pageName;
+            button.classList.toggle("active", active);
+            button.classList.toggle("border-[#d4b06a]/30", active);
+            button.classList.toggle("text-white/90", active);
+            button.classList.toggle("border-white/15", !active);
+            button.classList.toggle("text-white/75", !active);
+        });
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function setStep(stepNumber) {
+        currentStep = Math.max(1, Math.min(5, stepNumber));
+
+        refs.stepTabs.forEach((tab) => {
+            const isActive = Number(tab.dataset.step) === currentStep;
+            tab.classList.toggle("bg-[#0d2747]", isActive);
+            tab.classList.toggle("text-white", isActive);
+            tab.classList.toggle("bg-[#f5ecda]", !isActive);
+            tab.classList.toggle("text-[#7c6125]", !isActive);
+        });
+        
+        refs.stepPanels.forEach((panel) => {
+            panel.classList.toggle("hidden", Number(panel.dataset.stepPanel) !== currentStep);
+        });
+        
+        refs.prevStep.disabled = currentStep === 1;
+        refs.prevStep.classList.toggle("opacity-40", currentStep === 1);
+        refs.nextStep.classList.toggle("hidden", currentStep === 5);
+        refs.finishBooking.classList.toggle("hidden", currentStep !== 5);
+    }
+    
+    function wireEvents() {
+        refs.pageButtons.forEach((button) => {
+            button.addEventListener("click", () => setActivePage(button.dataset.page));
+        });
+        
+        refs.pageJumps.forEach((button) => {
+            button.addEventListener("click", () => setActivePage(button.dataset.target));
+        });
+
+        refs.heroBookingForm?.addEventListener("submit", (event) => {
+            event.preventDefault();
+            if (refs.heroFormMessage){
+                refs.heroFormMessage.textContent = "Availability checked. Continue on the Booking page to complete the reservation details.";
+                refs.heroFormMessage.classList.remove("hidden");
+            }
+            setActivePage("booking");
+        });
+        
+        refs.stepTabs.forEach((tab) => {
+            if (tab) {
+                tab.addEventListener("click", () => setStep(Number(tab.dataset.step)));
+            }
+        });
+        
+        refs.prevStep.addEventListener("click", () => setStep(currentStep - 1));
+        refs.nextStep.addEventListener("click", () => setStep(currentStep + 1));
+        
+        [
+            refs.fullName,
+            refs.hotelSelect,
+            refs.checkIn,
+            refs.checkOut,
+            ...refs.roomChoices,
+            ...refs.serviceOptions
+        ].forEach((input) => {
+            input.addEventListener("input", updateSummary);
+            input.addEventListener("change", updateSummary);
+        });
+
+        refs.bookingForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+            updateSummary();
+            refs.bookingMessage.textContent = `Booking complete. Your reservation has been recorded with confirmation number ${document.getElementById("confirmation-number").value}.`;
+            refs.bookingMessage.classList.remove("hidden");
+        });
+        }
+
+        function applyConfig(config) {
+        const c = { ...defaultConfig, ...config };
+        document.body.style.backgroundColor = c.background_color;
+        refs.app.style.backgroundColor = c.background_color;
+
+        refs.siteTitle.textContent = c.site_title;
+        refs.heroTitle.textContent = c.hero_title;
+        refs.heroSubtitle.textContent = c.hero_subtitle;
+        refs.bookingPageTitle.textContent = c.booking_page_title;
+        refs.feedbackTitle.textContent = c.feedback_title;
+
+        const serifStack = `${c.font_family}, "Cormorant Garamond", Georgia, serif`;
+        const sansStack = `"Manrope", ui-sans-serif, system-ui, sans-serif`;
+        
+        document.querySelectorAll(".brand-serif").forEach((el) => {
+            el.style.fontFamily = serifStack;
+        });
+        document.body.style.fontFamily = sansStack;
+
+        const base = Number(c.font_size) || 16;
+        refs.siteTitle.style.fontSize = `${base * 1.9}px`;
+        refs.heroTitle.style.fontSize = `${base * 3.2}px`;
+        refs.heroSubtitle.style.fontSize = `${base * 1.06}px`;
+        refs.bookingPageTitle.style.fontSize = `${base * 3}px`;
+        refs.feedbackTitle.style.fontSize = `${base * 3}px`;
+        }
+        
+        if (window.elementSdk) {
+        window.elementSdk.init({
+            defaultConfig,
+            onConfigChange: async (config) => {
+                applyConfig(config);
+            },
+            mapToCapabilities: (config) => ({
+            recolorables: [
+                {
+                get: () => config.background_color || defaultConfig.background_color,
+                set: (value) => window.elementSdk.setConfig({ background_color: value })
+            },
+                {
+                    get: () => config.surface_color || defaultConfig.surface_color,
+                set: (value) => window.elementSdk.setConfig({ surface_color: value })
+            },
+            {
+                get: () => config.text_color || defaultConfig.text_color,
+                set: (value) => window.elementSdk.setConfig({ text_color: value })
+            },
+                {
+                    get: () => config.primary_action_color || defaultConfig.primary_action_color,
+                set: (value) => window.elementSdk.setConfig({ primary_action_color: value })
+            },
+            {
+                get: () => config.secondary_action_color || defaultConfig.secondary_action_color,
+                set: (value) => window.elementSdk.setConfig({ secondary_action_color: value })
+                }
+            ],
+            borderables: [],
+            fontEditable: {
+                get: () => config.font_family || defaultConfig.font_family,
+                set: (value) => window.elementSdk.setConfig({ font_family: value })
+            },
+            fontSizeable: {
+                get: () => config.font_size || defaultConfig.font_size,
+                set: (value) => window.elementSdk.setConfig({ font_size: value })
+            }
+        }),
+        mapToEditPanelValues: (config) => new Map([
+            ["site_title", config.site_title || defaultConfig.site_title],
+            ["hero_title", config.hero_title || defaultConfig.hero_title],
+            ["hero_subtitle", config.hero_subtitle || defaultConfig.hero_subtitle],
+            ["booking_page_title", config.booking_page_title || defaultConfig.booking_page_title],
+            ["feedback_title", config.feedback_title || defaultConfig.feedback_title],
+            ])
+        });
+        }
+
+        cacheRefs();
+        wireEvents();
+        setActivePage("home");
+        setStep(1);
+        updateSummary();
+        applyConfig(window.elementSdk ? window.elementSdk.config : defaultConfig);
+        
+        const menuToggle = document.getElementById("menu-toggle");
+        const mobileMenu = document.getElementById("mobile-menu");
+        
+        menuToggle.addEventListener("click", () => {
+            mobileMenu.classList.toggle("hidden");
+        });
+        </script>
+    </body>
+    </html>
+    
